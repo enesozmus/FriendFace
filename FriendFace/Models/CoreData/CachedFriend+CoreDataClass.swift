@@ -2,7 +2,7 @@
 //  CachedFriend+CoreDataClass.swift
 //  FriendFace
 //
-//  Created by enesozmus on 23.03.2024.
+//  Created by enesozmus on 24.03.2024.
 //
 //
 

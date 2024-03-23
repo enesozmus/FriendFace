@@ -9,34 +9,67 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CachedUser>
+    
     @State private var users = [User]()
     
     var body: some View {
         NavigationView {
-            List(users) { user in
+            List(cachedUsers) { user in
                 NavigationLink {
                     DetailView(user: user)
                 } label: {
-                    Text(user.name)
+                    Text(user.wrappedName)
                 }
             }
             .navigationTitle("FriendFace")
             /*
                 .task
-                
+             
                     -> A unit of asynchronous work.
                     -> In Swift, a task refers to a unit of work that can be executed concurrently or asynchronously.
                     -> When you create an instance of Task, you provide a closure that contains the work for that task to perform.
              */
             .task {
-                //→ The Task the closure is marked with the async keyword, and the await the keyword is used to wait for the result of the asynchronous operation.
-                if let retrievedUsers = await getUsers() {
-                    users = retrievedUsers
+                // → The Task the closure is marked with the async keyword, and the await the keyword is used to wait for the result of the asynchronous operation.
+                
+                // → First thing to note is we put everything inside a condition “cachedUsers.isEmpty” to not do all the work again every time the list is rendered.
+                if cachedUsers.isEmpty {
+                    if let retrievedUsers = await getUsers() {
+                        users = retrievedUsers
+                    }
+                    // → The only thing left to do is to fix our ContentView and our DetailView so that they load data from persistent storage, rather than from the internet every time.
+                    // → We added logic to the .task {} modifier for saving data and changed the list to iterate over cachedUsers rather than just users fetched from the internet.
+                    await MainActor.run {
+                        for user in users {
+                            let newUser = CachedUser(context: moc)
+                            newUser.name = user.name
+                            newUser.id = user.id
+                            newUser.isActive = user.isActive
+                            newUser.age = Int16(user.age)
+                            newUser.about = user.about
+                            newUser.email = user.email
+                            newUser.address = user.address
+                            newUser.company = user.company
+                            newUser.formattedDate = user.formattedDate
+                            
+                            for friend in user.friends {
+                                let newFriend = CachedFriend(context: moc)
+                                newFriend.id = friend.id
+                                newFriend.name = friend.name
+                                newFriend.user = newUser
+                            }
+                            
+                            try? moc.save()
+                        }
+                    }
                 }
             }
         }
     }
-    
+    // ...
+    // ...
     // → create a function that does the networking and returns an array of users[]
     // → then assign the result to the @state variable called “users”.
     func getUsers() async -> [User]? {
@@ -106,10 +139,6 @@ struct ContentView: View {
             print("Invalid data")
             print("Check out failed: \(error.localizedDescription)")
         }
-        return nil
+        return nil;
     }
-}
-
-#Preview {
-    ContentView()
 }

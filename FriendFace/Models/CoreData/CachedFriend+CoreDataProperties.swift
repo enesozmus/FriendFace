@@ -2,7 +2,7 @@
 //  CachedFriend+CoreDataProperties.swift
 //  FriendFace
 //
-//  Created by enesozmus on 23.03.2024.
+//  Created by enesozmus on 24.03.2024.
 //
 //
 
@@ -23,6 +23,7 @@ extension CachedFriend {
     var wrappedName: String {
         name ?? "Unknown"
     }
+    
 }
 
 extension CachedFriend : Identifiable {
