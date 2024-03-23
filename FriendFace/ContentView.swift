@@ -14,8 +14,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(users) { user in
-                Text(user.name
-                )
+                NavigationLink {
+                    DetailView(user: user)
+                } label: {
+                    Text(user.name)
+                }
             }
             .navigationTitle("FriendFace")
             /*

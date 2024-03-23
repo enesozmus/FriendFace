@@ -13,6 +13,7 @@
 		DF5DB2272BAEEB3D00928726 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF5DB2262BAEEB3D00928726 /* Preview Assets.xcassets */; };
 		DF5DB22F2BAEEB7500928726 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB22E2BAEEB7500928726 /* User.swift */; };
 		DF5DB2312BAEEBE600928726 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB2302BAEEBE600928726 /* Friend.swift */; };
+		DF5DB2332BAEFC8200928726 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB2322BAEFC8200928726 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		DF5DB2262BAEEB3D00928726 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DF5DB22E2BAEEB7500928726 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF5DB2302BAEEBE600928726 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		DF5DB2322BAEFC8200928726 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				DF5DB2212BAEEB3B00928726 /* ContentView.swift */,
 				DF5DB2232BAEEB3D00928726 /* Assets.xcassets */,
 				DF5DB2252BAEEB3D00928726 /* Preview Content */,
+				DF5DB2322BAEFC8200928726 /* DetailView.swift */,
 			);
 			path = FriendFace;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				DF5DB2222BAEEB3B00928726 /* ContentView.swift in Sources */,
 				DF5DB2202BAEEB3B00928726 /* FriendFaceApp.swift in Sources */,
 				DF5DB22F2BAEEB7500928726 /* User.swift in Sources */,
+				DF5DB2332BAEFC8200928726 /* DetailView.swift in Sources */,
 				DF5DB2312BAEEBE600928726 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
