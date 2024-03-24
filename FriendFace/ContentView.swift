@@ -20,7 +20,25 @@ struct ContentView: View {
                 NavigationLink {
                     DetailView(user: user)
                 } label: {
-                    Text(user.wrappedName)
+                    //Text(user.wrappedName)
+                    HStack {
+                        Text(user.nameInitials ?? "XX")
+                            .padding()
+                            .clipShape(Circle())
+                            .frame(width: 70)
+                            .overlay(
+                                Circle()
+                                    .stroke(user.isActive ? Color.green : Color.gray, lineWidth: 2)
+                            )
+                            .padding([.top, .bottom, .trailing], 5)
+                        VStack(alignment: .leading) {
+                            Text(user.wrappedName)
+                                .font(.headline)
+                            Text(user.isActive ? "Active" : "Offline")
+                                .font(.subheadline)
+                                .foregroundColor(user.isActive ? .green : .secondary)
+                        }
+                    }
                 }
             }
             .navigationTitle("FriendFace")
