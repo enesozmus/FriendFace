@@ -18,6 +18,9 @@
 		DF5DB22F2BAEEB7500928726 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB22E2BAEEB7500928726 /* User.swift */; };
 		DF5DB2312BAEEBE600928726 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB2302BAEEBE600928726 /* Friend.swift */; };
 		DF5DB2332BAEFC8200928726 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5DB2322BAEFC8200928726 /* DetailView.swift */; };
+		DF7D422D2BB0A84200130A4D /* UserSD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D422C2BB0A84200130A4D /* UserSD.swift */; };
+		DF7D422F2BB0A84E00130A4D /* FriendSD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D422E2BB0A84E00130A4D /* FriendSD.swift */; };
+		DF7D42312BB0AA3500130A4D /* DetailView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7D42302BB0AA3500130A4D /* DetailView2.swift */; };
 		DFFFD8C72BAF1F240010ABFD /* FriendFace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFFFD8C52BAF1F240010ABFD /* FriendFace.xcdatamodeld */; };
 		DFFFD8EA2BAF2C0B0010ABFD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFFD8E92BAF2C0B0010ABFD /* DataController.swift */; };
 		DFFFD8EC2BAF79430010ABFD /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFFD8EB2BAF79430010ABFD /* Notes.swift */; };
@@ -36,6 +39,9 @@
 		DF5DB22E2BAEEB7500928726 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF5DB2302BAEEBE600928726 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		DF5DB2322BAEFC8200928726 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		DF7D422C2BB0A84200130A4D /* UserSD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSD.swift; sourceTree = "<group>"; };
+		DF7D422E2BB0A84E00130A4D /* FriendSD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSD.swift; sourceTree = "<group>"; };
+		DF7D42302BB0AA3500130A4D /* DetailView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView2.swift; sourceTree = "<group>"; };
 		DFFFD8C62BAF1F240010ABFD /* FriendFace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendFace.xcdatamodel; sourceTree = "<group>"; };
 		DFFFD8E92BAF2C0B0010ABFD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DFFFD8EB2BAF79430010ABFD /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 				DF5DB21F2BAEEB3B00928726 /* FriendFaceApp.swift */,
 				DF5DB2212BAEEB3B00928726 /* ContentView.swift */,
 				DF5DB2322BAEFC8200928726 /* DetailView.swift */,
+				DF7D42302BB0AA3500130A4D /* DetailView2.swift */,
 				DF5DB2232BAEEB3D00928726 /* Assets.xcassets */,
 				DF5DB2252BAEEB3D00928726 /* Preview Content */,
 			);
@@ -92,11 +99,21 @@
 		DF5DB22D2BAEEB6200928726 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DF7D422B2BB0A80E00130A4D /* SwiftData */,
 				DFFFD8D02BAF26010010ABFD /* CoreData */,
 				DF5DB22E2BAEEB7500928726 /* User.swift */,
 				DF5DB2302BAEEBE600928726 /* Friend.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DF7D422B2BB0A80E00130A4D /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				DF7D422C2BB0A84200130A4D /* UserSD.swift */,
+				DF7D422E2BB0A84E00130A4D /* FriendSD.swift */,
+			);
+			path = SwiftData;
 			sourceTree = "<group>";
 		};
 		DFFFD8D02BAF26010010ABFD /* CoreData */ = {
@@ -187,14 +204,17 @@
 				DF2610CA2BAFA233002FFBA6 /* CachedFriend+CoreDataProperties.swift in Sources */,
 				DFFFD8C72BAF1F240010ABFD /* FriendFace.xcdatamodeld in Sources */,
 				DF5DB2222BAEEB3B00928726 /* ContentView.swift in Sources */,
+				DF7D422F2BB0A84E00130A4D /* FriendSD.swift in Sources */,
 				DF2610CC2BAFA233002FFBA6 /* CachedUser+CoreDataProperties.swift in Sources */,
 				DFFFD8EA2BAF2C0B0010ABFD /* DataController.swift in Sources */,
 				DF5DB2202BAEEB3B00928726 /* FriendFaceApp.swift in Sources */,
+				DF7D42312BB0AA3500130A4D /* DetailView2.swift in Sources */,
 				DF5DB22F2BAEEB7500928726 /* User.swift in Sources */,
 				DF5DB2332BAEFC8200928726 /* DetailView.swift in Sources */,
 				DF2610CB2BAFA233002FFBA6 /* CachedUser+CoreDataClass.swift in Sources */,
 				DF5DB2312BAEEBE600928726 /* Friend.swift in Sources */,
 				DFFFD8EC2BAF79430010ABFD /* Notes.swift in Sources */,
+				DF7D422D2BB0A84200130A4D /* UserSD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

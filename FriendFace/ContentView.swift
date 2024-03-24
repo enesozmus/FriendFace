@@ -5,6 +5,7 @@
 //  Created by enesozmus on 23.03.2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
@@ -14,8 +15,67 @@ struct ContentView: View {
     
     @State private var users = [User]()
     
+    @Environment(\.modelContext) var modelContext
+    // Sort by online status
+    // Then by name
+    @Query(sort: [
+        SortDescriptor(\UserSD.isActive, order: .reverse),
+        SortDescriptor(\UserSD.name)
+    ]) var users_SD: [UserSD]
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
+            List(users_SD, id: \.id) { user in
+                NavigationLink(destination: DetailView2(user: user)) {
+                    // ...
+                    HStack() {
+                        Text(user.name)
+                            .font(.system(size: 16, weight: .bold, design: .default))
+                            .foregroundStyle(.white)
+                        
+                        Text("\(user.age)")
+                            .font(.system(size: 12, weight: .bold, design: .default))
+                            .foregroundStyle(.gray)
+                        
+                        Spacer()
+                        
+                        if user.isActive {
+                            Circle()
+                                .fill(.green)
+                                .frame(width: 20, height: 20)
+                        } else {
+                            Circle()
+                                .fill(.red)
+                                .frame(width: 20, height: 20)
+                        }
+                        
+                    }
+                    .padding([.trailing, .vertical], 15)
+                    .padding(.horizontal, 20)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .background(Color(red: 32/255, green: 36/255, blue: 38/255))
+                    .cornerRadius(10)
+                }
+                .padding(-4)
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
+            .navigationTitle("FriendFace")
+            .navigationBarTitleDisplayMode(.inline)
+            .preferredColorScheme(.dark)
+            .task {
+                // Only pull data from API is nothing is saved
+                // That way it works offline (challenge requirement)
+                if users.isEmpty {
+                    await loadData()
+                }
+            }
+            .refreshable {
+                Task {
+                    await loadData()
+                }
+            }
+            // ...
             List(cachedUsers) { user in
                 NavigationLink {
                     DetailView(user: user)
@@ -158,5 +218,36 @@ struct ContentView: View {
             print("Check out failed: \(error.localizedDescription)")
         }
         return nil;
+    }
+    
+    // ...
+    // Pull data from API and store in SwiftData
+    func loadData() async {
+        // Delete stored data
+        try? modelContext.delete(model: UserSD.self)
+        
+        guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
+            print("Invalid URL")
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let decodedResponse = try JSONDecoder().decode([UserSD].self, from: data)
+            
+            for user in decodedResponse {
+                modelContext.insert(user)
+            }
+        } catch {
+            print("Error loading data: \(error.localizedDescription)")
+        }
+    }
+}
+
+// This allows the query to work on booleans
+extension Bool: Comparable {
+    public static func <(lhs: Self, rhs: Self) -> Bool {
+        // the only true inequality is false < true
+        !lhs && rhs
     }
 }
